@@ -146,6 +146,36 @@ nav .nav-cta {
 }
 nav .nav-cta:hover { background: var(--burgundy-d); color: #fff; }
 nav .nav-cta.active::after { display: none; }
+.nav-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--petal);
+  color: var(--mid);
+  margin-left: 4px;
+  transition: background .2s, color .2s, transform .15s;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+/* 인스타그램 — 호버 시 인스타 그라데이션 */
+.nav-icon-insta:hover {
+  background: linear-gradient(135deg, #833ab4 0%, #c13584 45%, #e1306c 75%, #f77737 100%);
+  color: #fff;
+  transform: scale(1.08);
+}
+/* 카카오 — 기본 흰/연베이지, 호버 시 카카오 노란색 */
+.nav-icon-kakao {
+  background: var(--petal);
+  color: var(--mid);
+}
+.nav-icon-kakao:hover {
+  background: #FEE500;
+  color: #3A1D1D;
+  transform: scale(1.08);
+}
 
 /* ── 히어로 ─────────────────────────────────────────────────── */
 .hero {
@@ -192,6 +222,12 @@ nav .nav-cta.active::after { display: none; }
   opacity: .68;
   line-height: 2;
   margin-bottom: 32px;
+}
+.hero-since {
+  font-size: .82rem;
+  opacity: .6;
+  margin: 10px 0 28px;
+  letter-spacing: .01em;
 }
 .hero-stats {
   display: inline-flex;
@@ -497,6 +533,61 @@ footer a {
 footer a:hover { text-decoration: underline; }
 
 /* ── 반응형 ─────────────────────────────────────────────────── */
+/* ── 코지 소개 섹션 ─────────────────────────────────────────── */
+.about-section {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 0 16px;
+  text-align: center;
+}
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 32px;
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 40px 48px;
+  box-shadow: 0 2px 16px var(--shadow-burg);
+}
+.about-p {
+  font-size: .97rem;
+  color: var(--mid);
+  line-height: 2.1;
+  word-break: keep-all;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.about-closing {
+  font-size: 1rem;
+  color: var(--charcoal);
+  line-height: 2;
+  word-break: keep-all;
+  padding-top: 4px;
+}
+.about-closing strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.08rem;
+  color: var(--burgundy);
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+.about-kw {
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.kw-read    { color: var(--read-d);    background: var(--read-l); }
+.kw-move    { color: var(--move-d);    background: var(--move-l); }
+.kw-learn   { color: var(--learn-d);   background: var(--learn-l); }
+.kw-connect { color: var(--connect-d); background: var(--connect-l); }
+@media (max-width: 700px) {
+  .about-body { padding: 28px 22px; }
+}
+
 /* ── 소셜 링크 버튼 ─────────────────────────────────────────── */
 .social-links {
   display: flex;
@@ -588,7 +679,7 @@ footer a:hover { text-decoration: underline; }
   nav .nav-cta { padding: 7px 14px; margin-left: 4px; }
   .hero { padding: 40px 20px 36px; }
   .hero h1 { font-size: 1.6rem; }
-  .hero-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; border-radius: 12px; width: 100%; max-width: 340px; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; border-radius: 12px; width: 100%; max-width: 340px; margin-left: auto; margin-right: auto; }
   .stat { padding: 12px 8px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); }
   .stat:nth-child(3) { border-bottom: none; }
   .concepts-grid { grid-template-columns: 1fr; }
@@ -622,30 +713,33 @@ footer a:hover { text-decoration: underline; }
     <a href="https://open.kakao.com/o/gwko99Gc" target="_blank" rel="noopener noreferrer">
       <button class="nav-cta" onclick="setNav(this)">함께하기</button>
     </a>
+    <a href="https://www.instagram.com/coxi_official" target="_blank" rel="noopener noreferrer" class="nav-icon-btn nav-icon-insta" title="Instagram @coxi_official">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="https://open.kakao.com/o/gwko99Gc" target="_blank" rel="noopener noreferrer" class="nav-icon-btn nav-icon-kakao" title="카카오 오픈채팅">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 5.82 2 10.5c0 2.96 1.73 5.56 4.35 7.15L5.3 21.1a.5.5 0 0 0 .68.64l4.1-2.3C10.67 19.8 11.33 19.86 12 19.86c5.523 0 10-3.82 10-8.5C22 5.82 17.523 2 12 2z"/></svg>
+    </a>
   </nav>
 </header>
 
 <!-- ── 히어로 ────────────────────────────────────────────────── -->
 <div class="hero">
-  <div class="hero-eyebrow">Gangnam Lifestyle Community · Since 2017</div>
+  <div class="hero-eyebrow">Gangnam Lifestyle Community</div>
   <h1>
     Read<span>·</span>Move<span>·</span>Learn<span>·</span>Connect
   </h1>
   <p class="hero-slogan">
     <em>함께 배우고, 함께 도전하며, 함께 변화하는 곳</em>
   </p>
-  <p class="hero-desc">
-    책과 운동, 배움과 사람 — 네 가지 방향으로 함께 성장하는 강남 커뮤니티<br>
-    2017년 독서모임으로 시작해 지금까지 이어지는 코지(COEXIST)
-  </p>
+  <p class="hero-since">2017년 독서모임으로 시작해 지금까지 이어지는 코지(COEXIST)</p>
   <div class="hero-stats">
     <div class="stat">
-      <span class="stat-num">9년+</span>
+      <span class="stat-num">2017</span>
       <span class="stat-lbl">운영</span>
     </div>
     <div class="stat">
-      <span class="stat-num">4가지</span>
-      <span class="stat-lbl">컨셉</span>
+      <span class="stat-num">7,380+</span>
+      <span class="stat-lbl">함께한 사람</span>
     </div>
     <div class="stat">
       <span class="stat-num">강남</span>
@@ -659,7 +753,7 @@ footer a:hover { text-decoration: underline; }
 
   <!-- 컨셉 소개 -->
   <div class="sec-eyebrow">Our Concepts</div>
-  <div class="sec-title">코지가 함께하는 네 가지 방향</div>
+  <div class="sec-title">코지가 함께하는 방향</div>
   <div class="sec-desc">
     지식을 쌓고, 몸을 움직이고, 새로운 것을 배우고, 사람과 연결되는<br>
     코지만의 라이프스타일
@@ -807,6 +901,34 @@ footer a:hover { text-decoration: underline; }
     </div>
 
   </div><!-- /concepts-grid -->
+
+  <!-- 코지 소개 -->
+  <div class="divider"></div>
+  <section class="about-section">
+    <div class="sec-eyebrow">About COXI</div>
+    <div class="sec-title" style="color: var(--burgundy);">코지(COXI)는?</div>
+    <div class="about-body">
+      <p class="about-p">
+        <span class="about-kw kw-read">다방면의 독서</span>를 통해 세상의 지식을 습득하고,<br>
+        <span class="about-kw kw-move">규칙적인 운동</span>으로 건강한 신체와 강인한 정신을 기르고,<br>
+        <span class="about-kw kw-learn">경제적 자유를 고민</span>하며 주체적인 삶을 만들어갑니다.
+      </p>
+      <p class="about-p">
+        이 모든 것들을 혼자하는 것보단 함께하는 것이 더 즐겁고 효과적이기에,<br>
+        우리는 <span class="about-kw kw-connect">서로 교류</span>하며 지혜와 열정을 나눕니다.
+      </p>
+      <p class="about-p">
+        코지(COXI)는 바랍니다.<br>
+        어제보다 더 성장한 우리가 만족스러운 삶을 살기를,<br>
+        그렇게 성장한 우리가 주변에도 좋은 영향을 주기를,<br>
+        나아가 세상을 더 이롭게 만들기를.
+      </p>
+      <p class="about-closing">
+        함께 배우고, 함께 도전하며, 함께 변화하는 곳.<br>
+        <strong>코지(COEXIST)입니다.</strong>
+      </p>
+    </div>
+  </section>
 
   <!-- 구분선 -->
   <div class="divider"></div>
