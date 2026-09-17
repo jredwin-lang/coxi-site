@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COXI 코지 — 강남 라이프스타일 커뮤니티</title>
+<meta property="og:title" content="COXI 코지 — 강남 라이프스타일 커뮤니티">
+<meta property="og:description" content="Read · Move · Learn · Connect — 함께 배우고, 함께 도전하며, 함께 변화하는 강남 커뮤니티">
+<meta name="theme-color" content="#A50034">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+/* ── CSS 변수 ───────────────────────────────────────────────── */
+:root {
+  --burgundy:     #A50034;
+  --burgundy-d:   #7A0026;
+  --burgundy-l:   #C8224F;
+  --rose:         #D4849A;
+  --gold:         #C9A96E;
+  --gold-l:       #E8D5B0;
+  --offwhite:     #FAFAF8;
+  --card-bg:      #FFFFFF;
+  --petal:        #F9F0F2;
+  --charcoal:     #1E1E1E;
+  --mid:          #5A5A5A;
+  --light:        #9A9A9A;
+  --border:       #EDE8E8;
+  --shadow-burg:  rgba(165,0,52,.12);
+
+  --read-main:    #A50034;
+  --read-d:       #7A0026;
+  --read-l:       #F9F0F2;
+  --move-main:    #2A6B45;
+  --move-d:       #1A4A2E;
+  --move-l:       #E8F4EE;
+  --learn-main:   #7A5500;
+  --learn-d:      #5A3D00;
+  --learn-l:      #FDF4E3;
+  --connect-main: #1A4A8A;
+  --connect-d:    #0D2D5E;
+  --connect-l:    #EEF3FB;
+
+  --r:   10px;
+  --r-lg:16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--offwhite);
+  color: var(--charcoal);
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  min-width: 320px;
+}
+
+/* ── 헤더 ───────────────────────────────────────────────────── */
+header {
+  background: #fff;
+  border-bottom: 2.5px solid var(--burgundy);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  box-shadow: 0 2px 16px rgba(0,0,0,.07);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.header-logo-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--burgundy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .01em;
+  flex-shrink: 0;
+}
+.header-brand-text .main {
+  font-size: .92rem;
+  font-weight: 800;
+  color: var(--burgundy);
+  line-height: 1.2;
+}
+.header-brand-text .sub {
+  font-size: .62rem;
+  color: var(--light);
+  letter-spacing: .04em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+nav button {
+  background: none;
+  border: none;
+  color: var(--mid);
+  font-family: inherit;
+  font-size: .85rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .18s;
+  position: relative;
+}
+nav button:hover { background: var(--petal); color: var(--burgundy); }
+nav button.active { color: var(--burgundy); font-weight: 700; }
+nav button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2.5px;
+  background: var(--burgundy);
+  border-radius: 2px;
+}
+nav .nav-cta {
+  background: var(--burgundy);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 22px;
+  padding: 8px 20px;
+  margin-left: 8px;
+  transition: background .18s;
+}
+nav .nav-cta:hover { background: var(--burgundy-d); color: #fff; }
+nav .nav-cta.active::after { display: none; }
+
+/* ── 히어로 ─────────────────────────────────────────────────── */
+.hero {
+  background: var(--burgundy);
+  background-image: linear-gradient(135deg, var(--burgundy-d) 0%, var(--burgundy) 55%, var(--burgundy-l) 100%);
+  color: #fff;
+  padding: 60px 32px 52px;
+  text-align: center;
+}
+.hero-eyebrow {
+  font-size: .7rem;
+  letter-spacing: .16em;
+  opacity: .65;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.hero h1 span {
+  display: inline-block;
+  opacity: .55;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  margin: 0 2px;
+}
+.hero-slogan {
+  font-size: 1rem;
+  opacity: .82;
+  margin: 14px 0 10px;
+}
+.hero-slogan em {
+  color: var(--gold-l);
+  font-style: normal;
+  font-weight: 600;
+}
+.hero-desc {
+  font-size: .85rem;
+  opacity: .68;
+  line-height: 2;
+  margin-bottom: 32px;
+}
+.hero-stats {
+  display: inline-flex;
+  background: rgba(255,255,255,.12);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+.stat {
+  padding: 14px 30px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,.15);
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-lbl {
+  font-size: .68rem;
+  opacity: .7;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+/* ── 본문 래퍼 ──────────────────────────────────────────────── */
+.app {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* ── 섹션 헤더 ──────────────────────────────────────────────── */
+.sec-eyebrow {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: var(--light);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.sec-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--charcoal);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: -.02em;
+}
+.sec-desc {
+  font-size: .87rem;
+  color: var(--mid);
+  text-align: center;
+  line-height: 1.9;
+  margin-bottom: 36px;
+}
+
+/* ── 컨셉 카드 그리드 ───────────────────────────────────────── */
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 56px;
+}
+
+.concept-card {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.concept-card:hover { transform: translateY(-5px); }
+
+.concept-card.c-read:hover  { border-color: var(--read-main);    box-shadow: 0 12px 36px rgba(165,0,52,.15); }
+.concept-card.c-move:hover  { border-color: var(--move-main);    box-shadow: 0 12px 36px rgba(42,107,69,.15); }
+.concept-card.c-learn:hover { border-color: var(--learn-main);   box-shadow: 0 12px 36px rgba(122,85,0,.15); }
+.concept-card.c-connect:hover { border-color: var(--connect-main); box-shadow: 0 12px 36px rgba(26,74,138,.15); }
+
+/* 이미지 영역 */
+.concept-img {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+.concept-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+.concept-card:hover .concept-img img { transform: scale(1.04); }
+
+/* 이미지 위 오버레이 */
+.concept-img-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px 18px;
+}
+.concept-label-en {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -.01em;
+  line-height: 1;
+  text-shadow: 0 2px 12px rgba(0,0,0,.5);
+}
+.concept-label-ko {
+  font-size: .72rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.8);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(0,0,0,.4);
+  margin-top: 3px;
+}
+
+/* 이미지 오버레이 그라디언트 */
+.c-read    .concept-img-overlay { background: linear-gradient(to top, rgba(122,0,38,.75) 0%, rgba(165,0,52,.2) 55%, transparent 100%); }
+.c-move    .concept-img-overlay { background: linear-gradient(to top, rgba(26,74,46,.75) 0%, rgba(42,107,69,.2) 55%, transparent 100%); }
+.c-learn   .concept-img-overlay { background: linear-gradient(to top, rgba(90,61,0,.75) 0%, rgba(122,85,0,.2) 55%, transparent 100%); }
+.c-connect .concept-img-overlay { background: linear-gradient(to top, rgba(13,45,94,.75) 0%, rgba(26,74,138,.2) 55%, transparent 100%); }
+
+/* 카드 바디 */
+.concept-body {
+  padding: 20px 20px 18px;
+}
+.concept-tagline {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--charcoal);
+  margin-bottom: 7px;
+  letter-spacing: -.01em;
+}
+.concept-desc {
+  font-size: .82rem;
+  color: var(--mid);
+  line-height: 1.85;
+  margin-bottom: 14px;
+}
+.concept-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.concept-tag {
+  font-size: .67rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9px;
+}
+.c-read    .concept-tag { background: var(--read-l);    color: var(--read-main); }
+.c-move    .concept-tag { background: var(--move-l);    color: var(--move-main); }
+.c-learn   .concept-tag { background: var(--learn-l);   color: var(--learn-main); }
+.c-connect .concept-tag { background: var(--connect-l); color: var(--connect-main); }
+
+/* ── 구분선 ─────────────────────────────────────────────────── */
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, var(--burgundy) 0%, var(--rose) 50%, var(--gold) 100%);
+  border-radius: 2px;
+  margin-bottom: 48px;
+  opacity: .25;
+}
+
+/* ── 최근 활동 피드 ─────────────────────────────────────────── */
+.feed-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 56px;
+}
+.feed-item {
+  background: var(--card-bg);
+  border-radius: var(--r);
+  border: 1.5px solid var(--border);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: border-color .18s, box-shadow .18s;
+  text-decoration: none;
+  color: inherit;
+}
+.feed-item:hover {
+  border-color: var(--rose);
+  box-shadow: 0 4px 18px var(--shadow-burg);
+}
+.feed-tag {
+  font-size: .67rem;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 9px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.feed-tag.t-read    { background: var(--read-l);    color: var(--read-main); }
+.feed-tag.t-move    { background: var(--move-l);    color: var(--move-main); }
+.feed-tag.t-learn   { background: var(--learn-l);   color: var(--learn-main); }
+.feed-tag.t-connect { background: var(--connect-l); color: var(--connect-main); }
+
+.feed-title {
+  flex: 1;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+.feed-date {
+  font-size: .75rem;
+  color: var(--light);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── 하단 CTA 바 ────────────────────────────────────────────── */
+.cta-bar {
+  background: var(--burgundy);
+  background-image: linear-gradient(135deg, var(--burgundy-d) 0%, var(--burgundy) 55%, var(--burgundy-l) 100%);
+  padding: 24px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.cta-bar-left .lbl {
+  font-size: .7rem;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.cta-bar-left .txt {
+  font-size: 1.05rem;
+  color: #fff;
+  font-weight: 700;
+}
+.cta-bar-left .txt em {
+  color: var(--gold-l);
+  font-style: normal;
+}
+.cta-bar-btn {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.38);
+  color: #fff;
+  font-family: inherit;
+  font-size: .88rem;
+  font-weight: 700;
+  padding: 11px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .18s;
+  letter-spacing: .02em;
+  flex-shrink: 0;
+}
+.cta-bar-btn:hover { background: rgba(255,255,255,.26); }
+
+/* ── 푸터 ───────────────────────────────────────────────────── */
+footer {
+  background: var(--burgundy);
+  background-image: linear-gradient(135deg, var(--burgundy-d) 0%, var(--burgundy) 60%, var(--burgundy-l) 100%);
+  color: rgba(255,255,255,.75);
+  text-align: center;
+  padding: 44px 24px;
+  font-size: .8rem;
+}
+footer .footer-logo {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: .12em;
+  margin-bottom: 8px;
+}
+footer .footer-sub {
+  font-size: .75rem;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 14px;
+  letter-spacing: .04em;
+}
+footer .footer-concept {
+  font-size: .78rem;
+  color: var(--gold-l);
+  font-weight: 600;
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+footer p { margin-bottom: 3px; }
+footer a {
+  color: var(--gold-l);
+  text-decoration: none;
+}
+footer a:hover { text-decoration: underline; }
+
+/* ── 반응형 ─────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  header { padding: 0 16px; height: 56px; gap: 0; }
+  .header-logo-circle { width: 32px; height: 32px; font-size: .65rem; }
+  .header-brand-text .main { font-size: .82rem; }
+  .header-brand-text .sub { display: none; }
+  nav button { padding: 7px 10px; font-size: .78rem; }
+  nav .nav-cta { padding: 7px 14px; margin-left: 4px; }
+  .hero { padding: 40px 20px 36px; }
+  .hero h1 { font-size: 1.6rem; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; border-radius: 12px; width: 100%; max-width: 340px; }
+  .stat { padding: 12px 8px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .stat:nth-child(3) { border-bottom: none; }
+  .concepts-grid { grid-template-columns: 1fr; }
+  .concept-img { height: 180px; }
+  .app { padding: 32px 16px 60px; }
+  .cta-bar { flex-direction: column; text-align: center; padding: 24px 20px; }
+  .cta-bar-btn { width: 100%; }
+}
+@media (max-width: 480px) {
+  nav button:not(.nav-cta) { padding: 7px 8px; font-size: .72rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── 헤더 ──────────────────────────────────────────────────── -->
+<header>
+  <a class="header-brand" href="#">
+    <div class="header-logo-circle">COXI</div>
+    <div class="header-brand-text">
+      <div class="main">코지 COXI</div>
+      <div class="sub">강남 라이프스타일 커뮤니티</div>
+    </div>
+  </a>
+  <nav>
+    <button class="active" onclick="setNav(this)">코지(COXI)란?</button>
+    <button onclick="setNav(this)">글쓰기</button>
+    <button onclick="setNav(this)">사진 및 후기</button>
+    <button class="nav-cta" onclick="setNav(this)">함께하기</button>
+  </nav>
+</header>
+
+<!-- ── 히어로 ────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-eyebrow">Gangnam Lifestyle Community · Since 2017</div>
+  <h1>
+    Read<span>·</span>Move<span>·</span>Learn<span>·</span>Connect
+  </h1>
+  <p class="hero-slogan">
+    <em>함께 배우고, 함께 도전하며, 함께 변화하는 곳</em>
+  </p>
+  <p class="hero-desc">
+    책과 운동, 배움과 사람 — 네 가지 방향으로 함께 성장하는 강남 커뮤니티<br>
+    2017년 독서모임으로 시작해 지금까지 이어지는 코지(COEXIST)
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">9년+</span>
+      <span class="stat-lbl">운영</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">4가지</span>
+      <span class="stat-lbl">컨셉</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">강남</span>
+      <span class="stat-lbl">거점</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── 본문 ──────────────────────────────────────────────────── -->
+<div class="app">
+
+  <!-- 컨셉 소개 -->
+  <div class="sec-eyebrow">Our Concepts</div>
+  <div class="sec-title">코지가 함께하는 네 가지 방향</div>
+  <div class="sec-desc">
+    지식을 쌓고, 몸을 움직이고, 새로운 것을 배우고, 사람과 연결되는<br>
+    코지만의 라이프스타일
+  </div>
+
+  <!-- 4대 컨셉 카드 -->
+  <div class="concepts-grid">
+
+    <!-- READ -->
+    <div class="concept-card c-read">
+      <div class="concept-img">
+        <!--
+          이미지 교체 안내 (Read):
+          Unsplash 검색어: book club reading warm cozy
+          권장 사진: Annie Spratt, Toa Heftiba 작가 작품
+          URL 예시: https://images.unsplash.com/photo-{ID}?w=800&auto=format&fit=crop
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&auto=format&fit=crop&q=80"
+          alt="독서모임 — 따뜻한 분위기의 책과 독서 장면"
+          loading="lazy"
+          onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#7A0026,#A50034,#C8224F)';"
+        >
+        <div class="concept-img-overlay">
+          <div class="concept-label-en">Read</div>
+          <div class="concept-label-ko">독서 · 사색</div>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="concept-tagline">책으로 깊어지는 대화</div>
+        <div class="concept-desc">
+          월 2회 독서모임과 추천도서 아카이브.<br>
+          한 권의 책이 열어주는 지식과 사람, 그리고 새로운 관점.
+        </div>
+        <div class="concept-tags">
+          <span class="concept-tag">독서모임</span>
+          <span class="concept-tag">월 2회</span>
+          <span class="concept-tag">추천도서</span>
+          <span class="concept-tag">북 아카이브</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOVE -->
+    <div class="concept-card c-move">
+      <div class="concept-img">
+        <!--
+          이미지 교체 안내 (Move):
+          Unsplash 검색어: group running city morning fitness
+          권장 사진: 도심 새벽 러닝 또는 짐 운동 장면
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop&q=80"
+          alt="코지핏 — 함께하는 운동과 피트니스"
+          loading="lazy"
+          onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1A4A2E,#2A6B45,#3A8A58)';"
+        >
+        <div class="concept-img-overlay">
+          <div class="concept-label-en">Move</div>
+          <div class="concept-label-ko">운동 · 도전</div>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="concept-tagline">몸으로 만드는 꾸준함</div>
+        <div class="concept-desc">
+          러닝, 웨이트, 클라이밍까지 — 코지핏.<br>
+          운동 인증 점수제로 서로 응원하며 지속하는 건강한 습관.
+        </div>
+        <div class="concept-tags">
+          <span class="concept-tag">코지핏</span>
+          <span class="concept-tag">러닝</span>
+          <span class="concept-tag">웨이트</span>
+          <span class="concept-tag">클라이밍</span>
+          <span class="concept-tag">인증 점수제</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEARN -->
+    <div class="concept-card c-learn">
+      <div class="concept-img">
+        <!--
+          이미지 교체 안내 (Learn):
+          Unsplash 검색어: adult workshop class seminar presentation
+          권장 사진: 소규모 강의 또는 워크숍 장면
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80"
+          alt="Learn — 강연, 스터디, 원데이클래스"
+          loading="lazy"
+          onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#5A3D00,#7A5500,#C9A96E)';"
+        >
+        <div class="concept-img-overlay">
+          <div class="concept-label-en">Learn</div>
+          <div class="concept-label-ko">배움 · 성장</div>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="concept-tagline">삶을 넓히는 배움</div>
+        <div class="concept-desc">
+          재테크 강좌, 보컬클래스, 원데이클래스, 스터디.<br>
+          관심사를 기술로, 취미를 역량으로 키우는 시간.
+        </div>
+        <div class="concept-tags">
+          <span class="concept-tag">재테크 강좌</span>
+          <span class="concept-tag">보컬클래스</span>
+          <span class="concept-tag">원데이클래스</span>
+          <span class="concept-tag">스터디</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONNECT -->
+    <div class="concept-card c-connect">
+      <div class="concept-img">
+        <!--
+          이미지 교체 안내 (Connect):
+          Unsplash 검색어: people gathering talk community warm
+          권장 사진: 편안한 분위기의 소그룹 대화 또는 네트워킹 장면
+        -->
+        <img
+          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&auto=format&fit=crop&q=80"
+          alt="Connect — 네트워킹과 멤버 교류"
+          loading="lazy"
+          onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#0D2D5E,#1A4A8A,#2A6AB5)';"
+        >
+        <div class="concept-img-overlay">
+          <div class="concept-label-en">Connect</div>
+          <div class="concept-label-ko">연결 · 교류</div>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="concept-tagline">사람이 모이는 곳</div>
+        <div class="concept-desc">
+          다양한 배경의 사람들이 모여 이야기하고 연결되는 코지.<br>
+          함께여서 가능한 성장과 기회, 그리고 진짜 인연.
+        </div>
+        <div class="concept-tags">
+          <span class="concept-tag">네트워킹</span>
+          <span class="concept-tag">멤버 교류</span>
+          <span class="concept-tag">커뮤니티</span>
+          <span class="concept-tag">소모임</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /concepts-grid -->
+
+  <!-- 구분선 -->
+  <div class="divider"></div>
+
+  <!-- 최근 활동 -->
+  <div class="sec-eyebrow">Recent Activity</div>
+  <div class="sec-title">최근 활동</div>
+  <div class="sec-desc" style="margin-bottom:24px;">
+    코지 멤버들의 생생한 활동 기록
+  </div>
+
+  <div class="feed-grid">
+    <a class="feed-item" href="#">
+      <span class="feed-tag t-read">Read</span>
+      <span class="feed-title">8월 독서모임 후기 — 『어떻게 살 것인가』</span>
+      <span class="feed-date">2026.08.24</span>
+    </a>
+    <a class="feed-item" href="#">
+      <span class="feed-tag t-move">Move</span>
+      <span class="feed-title">코지핏 8월 결산 — 이달의 MVP 발표</span>
+      <span class="feed-date">2026.08.31</span>
+    </a>
+    <a class="feed-item" href="#">
+      <span class="feed-tag t-learn">Learn</span>
+      <span class="feed-title">9월 재테크 강좌 — 미국 배당주 포트폴리오 구성법</span>
+      <span class="feed-date">2026.09.06</span>
+    </a>
+    <a class="feed-item" href="#">
+      <span class="feed-tag t-learn">Learn</span>
+      <span class="feed-title">9월 보컬클래스 모집 안내 — 발성부터 감성 표현까지</span>
+      <span class="feed-date">2026.09.10</span>
+    </a>
+    <a class="feed-item" href="#">
+      <span class="feed-tag t-connect">Connect</span>
+      <span class="feed-title">코지 정기 네트워킹 — 강남 라운지 모임 후기</span>
+      <span class="feed-date">2026.09.13</span>
+    </a>
+  </div>
+
+</div><!-- /app -->
+
+<!-- ── 하단 CTA ───────────────────────────────────────────────── -->
+<div class="cta-bar">
+  <div class="cta-bar-left">
+    <div class="lbl">지금 바로</div>
+    <div class="txt">코지와 함께 <em>Read · Move · Learn · Connect</em></div>
+  </div>
+  <button class="cta-bar-btn">함께하기 →</button>
+</div>
+
+<!-- ── 푸터 ──────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">COXI</div>
+  <div class="footer-sub">강남 라이프스타일 커뮤니티 · 코지(COEXIST)</div>
+  <div class="footer-concept">Read · Move · Learn · Connect</div>
+  <p>강남구 · <a href="https://coxi.co.kr">coxi.co.kr</a></p>
+  <p style="margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.4)">
+    © 2017–2026 COXI. All rights reserved.
+  </p>
+</footer>
+
+<script>
+function setNav(btn) {
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
